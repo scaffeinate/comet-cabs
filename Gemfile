@@ -59,3 +59,8 @@ gem 'will_paginate', '~> 3.0.6'
 # Use faker and populator to generate stub data
 gem 'faker'
 gem 'populator'
+
+# Use omniauth for social authentication
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
