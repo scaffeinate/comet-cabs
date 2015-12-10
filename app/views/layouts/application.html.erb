@@ -7,7 +7,30 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to 'CometCabs', root_path, class: 'navbar-brand' %>
+        </div>
+        <% if user_signed_in? %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+        </ul>
+        <% end %>
+      </div>
+    </nav>
+    <% unless notice.blank? %>
+    <div class="alert alert-info alert-dismissable alert-fixed">
+      <%= notice %>
+      <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
+    </div>
+    <% end %>
+    <% unless alert.blank? %>
+    <div class="alert alert-danger alert-dismissable alert-fixed">
+      <%= alert %>
+      <button aria-hidden="true" class="close" data-dismiss="alert" type="button">&times;</button>
+    </div>
+    <% end %>
     <%= yield %>
 
   </body>
