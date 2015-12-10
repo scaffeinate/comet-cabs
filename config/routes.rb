@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    member do
+      get 'complete_profile', as: :complete_profile
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
