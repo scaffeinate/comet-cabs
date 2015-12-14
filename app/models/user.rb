@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :authentications
 
+  mount_uploader :avatar, AvatarUploader
+
   def self.find_for_oauth(auth)
     user = User.where(email: auth.info.email).first
     if user
