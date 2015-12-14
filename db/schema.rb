@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214061018) do
+ActiveRecord::Schema.define(version: 20151214070109) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20151214061018) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "license",                default: "", null: false
+    t.string   "vehicle",                default: "", null: false
   end
 
   add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true
