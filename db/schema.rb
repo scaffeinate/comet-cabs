@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215051545) do
+ActiveRecord::Schema.define(version: 20151215051918) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -61,6 +61,18 @@ ActiveRecord::Schema.define(version: 20151215051545) do
 
   add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true
   add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "holder_name", default: "", null: false
+    t.string   "card_number", default: "", null: false
+    t.string   "card_cvv",    default: "", null: false
+    t.string   "card_expiry", default: "", null: false
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "",    null: false

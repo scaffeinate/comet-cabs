@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications
   has_many :bookings
+  has_many :payments
 
   mount_uploader :avatar, AvatarUploader
 
