@@ -4,7 +4,6 @@
       <div class="col-lg-4 col-lg-offset-2">
         <div class="well">
           <h3 class="text-center">Sign in</h3>
-          <hr>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group">
               <%= f.email_field :email, class: 'form-control', placeholder: 'Email', autofocus: true %>
@@ -30,11 +29,10 @@
       <div class="col-lg-3 col-lg-offset-1">
         <br>
         <br>
-        <h3 class="text-center">Social Login</h3>
+        <h3 class="text-center white">Social Login</h3>
         <br>
-        <br>
-        <%= link_to "<i class='fa fa-facebook'></i> &nbsp; Login with Facebook".html_safe, user_omniauth_authorize_path(:facebook), class: 'btn btn-block btn-primary' %><br>
-        <%= link_to "<i class='fa fa-google-plus'></i> &nbsp; Login with Google".html_safe, user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-block btn-danger' %>
+        <%= link_to "<i class='fa fa-facebook'></i> &nbsp; Login with Facebook".html_safe, user_omniauth_authorize_path(:facebook), class: 'btn btn-block btn-default', id: 'fb-login' %>
+        <%= link_to "<i class='fa fa-google-plus'></i> &nbsp; Login with Google".html_safe, user_omniauth_authorize_path(:google_oauth2), class: 'btn btn-block btn-default', id: 'google-login' %>
       </div>
     </div>
     <div class="row">
