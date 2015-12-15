@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214070109) do
+ActiveRecord::Schema.define(version: 20151215051545) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 20151214070109) do
   end
 
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+
+  create_table "bookings", force: :cascade do |t|
+    t.string   "source",      default: "0.0", null: false
+    t.string   "destination", default: "0.0", null: false
+    t.decimal  "distance",    default: 0.0,   null: false
+    t.decimal  "price",       default: 5.0,   null: false
+    t.integer  "status",      default: 0,     null: false
+    t.integer  "user_id"
+    t.integer  "driver_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "bookings", ["driver_id"], name: "index_bookings_on_driver_id"
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
 
   create_table "drivers", force: :cascade do |t|
     t.string   "name",                   default: "", null: false

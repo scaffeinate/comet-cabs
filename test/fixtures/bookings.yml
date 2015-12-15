@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source: MyString
+  destination: MyString
+  distance: 9.99
+  price: 9.99
+  status: 1
+  user_id: 
+  driver_id: 
+
+two:
+  source: MyString
+  destination: MyString
+  distance: 9.99
+  price: 9.99
+  status: 1
+  user_id: 
+  driver_id: 
