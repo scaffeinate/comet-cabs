@@ -30,7 +30,7 @@ h1, h2, h3, h4, h5 , h6, .btn {
 .navbar-brand {
   margin-left: auto; margin-right: auto;
   font-family: 'Cabin', sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: $brand-color !important;
 }
@@ -60,4 +60,13 @@ h1, h2, h3, h4, h5 , h6, .btn {
  margin-top: 15px;
  padding: 10px;
  font-weight: bold;
+}
+
+.btn-success {
+  background-color: $btn-success-color;
+}
+
+.btn-default {
+  background-color: $btn-default-color;
+  color: white;
 }

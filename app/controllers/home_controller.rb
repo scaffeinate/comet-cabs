@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    # code
+    @cab_types = CabType.all
   end
 end

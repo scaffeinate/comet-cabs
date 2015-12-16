@@ -4,6 +4,7 @@
       <div class="col-lg-4 col-lg-offset-2">
         <div class="well">
           <h3 class="text-center">Sign in</h3>
+          <br>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group">
               <%= f.email_field :email, class: 'form-control', placeholder: 'Email', autofocus: true %>
