@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215051918) do
+ActiveRecord::Schema.define(version: 20151216061641) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -34,10 +34,20 @@ ActiveRecord::Schema.define(version: 20151215051918) do
     t.integer  "driver_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "cab_type_id", default: 0,     null: false
   end
 
+  add_index "bookings", ["cab_type_id"], name: "index_bookings_on_cab_type_id"
   add_index "bookings", ["driver_id"], name: "index_bookings_on_driver_id"
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
+
+  create_table "cab_types", force: :cascade do |t|
+    t.decimal  "base_fare",         default: 5.0, null: false
+    t.integer  "number_of_persons", default: 4,   null: false
+    t.string   "name",              default: "",  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
   create_table "drivers", force: :cascade do |t|
     t.string   "name",                   default: "", null: false
@@ -57,8 +67,10 @@ ActiveRecord::Schema.define(version: 20151215051918) do
     t.datetime "updated_at",                          null: false
     t.string   "license",                default: "", null: false
     t.string   "vehicle",                default: "", null: false
+    t.integer  "cab_type_id",            default: 0,  null: false
   end
 
+  add_index "drivers", ["cab_type_id"], name: "index_drivers_on_cab_type_id"
   add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true
   add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
 

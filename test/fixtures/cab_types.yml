@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  base_fare: 9.99
+  number_of_persons: 1
+  name: MyString
+
+two:
+  base_fare: 9.99
+  number_of_persons: 1
+  name: MyString

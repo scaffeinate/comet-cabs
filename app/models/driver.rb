@@ -5,4 +5,5 @@ class Driver < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :bookings
+  belongs_to :cab_type
 end

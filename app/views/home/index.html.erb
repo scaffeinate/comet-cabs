@@ -13,7 +13,7 @@
               <div class="form-group">
                 <%= text_field_tag :destination, nil, class: 'form-control', placeholder: 'Destination', autofocus: true %>
               </div>
-              <%= submit_tag 'Request Cab', class: 'btn btn-success btn-block' %>
+              <%= link_to 'Request Cab', new_booking_path, class: 'btn btn-success btn-block' %>
               <%= button_tag 'Get Fare Estimate', class: 'btn btn-default btn-block' %>
             <% end %>
           </div>
