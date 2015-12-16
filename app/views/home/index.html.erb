@@ -1,2 +1,24 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container-fluid">
+  <div id="ride" class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="well">
+        <h3 class="text-center">Take a Ride</h3>
+        <br>
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2">
+            <%= form_tag bookings_path, method: :post do %>
+              <div class="form-group">
+                <%= text_field_tag :source, nil, class: 'form-control', placeholder: 'Source', autofocus: true %>
+              </div>
+              <div class="form-group">
+                <%= text_field_tag :destination, nil, class: 'form-control', placeholder: 'Destination', autofocus: true %>
+              </div>
+              <%= submit_tag 'Request Cab', class: 'btn btn-success btn-block' %>
+              <%= button_tag 'Get Fare Estimate', class: 'btn btn-default btn-block' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
