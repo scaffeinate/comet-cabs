@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root to: 'home#index', as: :home
+      root to: 'bookings#new', as: :home
     end
 
     unauthenticated :user do
@@ -23,7 +23,6 @@ Rails.application.routes.draw do
       get :fare_estimate
     end
   end
-  match :request_booking, to: 'home#request_booking', as: :request_booking, via: :post
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
