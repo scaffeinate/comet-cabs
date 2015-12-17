@@ -18,11 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings do
-    collection do
-      get :fare_estimate
-    end
-  end
+  resources :bookings
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
