@@ -1,3 +1,40 @@
 // Place all the styles related to the bookings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.left-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: white;
+}
+
+.right-relative {
+  margin-top: -45px;
+  position: absolute;
+  right: 0;
+  background: white;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.left-fixed .content {
+  padding-top: 100px;
+}
+
+@media(max-width:992px) {
+  .left-fixed {
+    position: relative;
+  }
+
+  .right-relative {
+    position: relative;
+    padding: 10px 50px;
+  }
+}

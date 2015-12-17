@@ -18,7 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bookings
+  resources :bookings do
+    collection do
+      get :fare_estimate
+    end
+  end
+  match :request_booking, to: 'home#request_booking', as: :request_booking, via: :post
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

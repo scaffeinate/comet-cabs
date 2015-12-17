@@ -1,2 +1,26 @@
-<h1>Bookings#new</h1>
-<p>Find me in app/views/bookings/new.html.erb</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 left-fixed">
+      <div class="content">
+        <%= form_tag request_booking_path, method: :post do %>
+          <div class="form-group">
+            <%= text_field_tag :source, @source, class: 'form-control', placeholder: 'Source', autofocus: true %>
+            <%= hidden_field_tag :source_place_id, nil %>
+          </div>
+          <div class="form-group">
+            <%= text_field_tag :destination, nil, class: 'form-control', placeholder: 'Destination', autofocus: true %>
+            <%= hidden_field_tag :destination_place_id, nil %>
+          </div>
+          <div class="form-group">
+            <h5><b>Ride Type</b></h5>
+          </div>
+          <%= submit_tag 'Request Cab', class: 'btn btn-success btn-block' %>
+          <%= submit_tag 'Get Fare Estimate', class: 'btn btn-default btn-block' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 right-relative">
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
