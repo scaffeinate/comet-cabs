@@ -76,6 +76,13 @@ class BookingsController < ApplicationController
   def current
     @booking = Booking.find(session[:current_booking])
     @driver = @booking.driver
+    @cab_type = @booking.cab_type
+  end
+
+  def cancel
+    session[:current_booking] = nil
+    flash[:messsage] = 'Trip successfully ended'
+    redirect_to root_path
   end
 
   private
