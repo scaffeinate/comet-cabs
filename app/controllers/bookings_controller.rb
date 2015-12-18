@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   include FareEstimate
   include FindDriver
+  include ErrorMessage
 
   before_action :authenticate_user!
   before_action :check_active_bookings, only: :new
@@ -15,9 +16,7 @@ class BookingsController < ApplicationController
     destination = params[:destination_location]
     cab_type = CabType.find(params[:cab_type])
 
-    @error = 'Source Location is invalid' if source.blank?
-    @error = 'Destination is invalid' if destination.blank?
-    @error = 'Not a valid cab type selection' if cab_type.blank?
+    valid_location?(source, destination, params[:cab_type])
 
     if @error.nil?
       distance = calculate_distance(source.split(','), source.split(',')).round(2)
@@ -26,13 +25,14 @@ class BookingsController < ApplicationController
       total = (fare + tax)
 
       @driver = find_driver(source, cab_type)
-      if @driver.empty?
+
+      if @driver.nil?
         @error = 'Sorry. No cabs around.'
       else
         @booking = Booking.new(source: source, destination: destination, distance: distance, price: total, user: current_user, driver: @driver, status: 1, cab_type: cab_type)
         if @booking.save
           @driver.update(available: false)
-          # session[:current_booking] = @booking.id
+          session[:current_booking] = @booking.id
         else
           @error = @driver.errors.full_messages.fist
         end
@@ -44,7 +44,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  def confirm_booking
+  def confirm
     @booking = Booking.find(session[:current_booking])
     @booking.update(status: 2)
     redirect_to current_bookings_path

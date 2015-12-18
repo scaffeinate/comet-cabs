@@ -2,6 +2,7 @@
   alertify.success("Found a cab for you!");
   alertify.success("<%= @driver.name %> is on the way!");
   $('#driver_info').html("<%=j render('shared/driver_info', driver: @driver) %>");
+  $('#confirm_booking_div').prop('disabled', false); 
 <% else %>
   alertify.error("<%= @error %>");
 <% end %>
