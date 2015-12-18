@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       post :confirm
       get :current
       post :cancel
+      post :complete
     end
   end
 

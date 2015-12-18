@@ -80,9 +80,21 @@ class BookingsController < ApplicationController
   end
 
   def cancel
+    @booking = Booking.find(session[:current_booking])
+    @booking.update(status: 4)
     session[:current_booking] = nil
-    flash[:messsage] = 'Trip successfully ended'
-    redirect_to root_path
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def complete
+    @booking = Booking.find(session[:current_booking])
+    @booking.update(status: 3)
+    session[:current_booking] = nil
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

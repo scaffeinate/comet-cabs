@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-md-6">
           <%= render 'shared/driver_info', driver: @driver %>
+          <%= link_to 'Finish ride', complete_bookings_path, remote: true, method: :post, class: 'btn btn-success btn-block' %>
         </div>
         <div class="col-md-6">
           <br>
@@ -21,7 +22,7 @@
             </div>
             <%= booking.submit 'Update ride', class: 'btn btn-primary btn-block' %>
           <% end %>
-          <%= link_to 'Cancel ride', cancel_bookings_path, method: :post, class: 'btn btn-default btn-block' %>
+          <%= link_to 'Cancel ride', cancel_bookings_path, remote: true, method: :post, class: 'btn btn-default btn-block' %>
         </div>
       </div>
       <br>
