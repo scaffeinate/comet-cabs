@@ -5,7 +5,7 @@
         <div class="well">
           <h3>Card Details</h3>
           <hr>
-          <%= form_tag save_card_info_user_path(current_user), method: :post do %>
+          <%= form_tag save_card_info_user_path(@user), method: :post do %>
             <div class="form-group">
               <%= text_field_tag :holder_name, nil, class: 'form-control', placeholder: 'Name on Card' %>
             </div>
