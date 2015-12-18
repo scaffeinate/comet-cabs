@@ -1,8 +1,7 @@
-console.log("Yes");
-
 <% if @error.nil? %>
   alertify.success("Found a cab for you!");
-  alertify.success("<%= @driver.name %> is on the way!")
+  alertify.success("<%= @driver.name %> is on the way!");
+  $('#driver_info').html("<%=j render('shared/driver_info', driver: @driver) %>");
 <% else %>
   alertify.error("<%= @error %>");
 <% end %>

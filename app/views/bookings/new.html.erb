@@ -5,7 +5,7 @@
         <%= render 'bookings/form' %>
         <%= link_to 'Get Fare Estimate', calculate_fare_path, id: :get_fare_estimate, class: 'btn btn-default btn-block' %>
         <hr>
-        <%= render 'shared/driver_info' %>
+        <%= render 'shared/driver_info', driver: @driver %>
         <%= link_to 'Confirm', confirm_bookings_path, method: :post, remote: true, class: 'btn btn-success btn-block' %>
       </div>
     </div>
