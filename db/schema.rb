@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218012139) do
+ActiveRecord::Schema.define(version: 20151218072102) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20151218012139) do
     t.string   "name",              default: "",  null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.float    "per_mile_fare",     default: 1.0, null: false
   end
 
   create_table "drivers", force: :cascade do |t|

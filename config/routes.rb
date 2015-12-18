@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'fare_estimate', to: 'fare_estimate#index'
+  get 'calculate_fare', to: 'fare_estimate#calculate_fare', as: :calculate_fare
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

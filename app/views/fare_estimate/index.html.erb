@@ -6,7 +6,7 @@
         <br>
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2">
-            <%= form_tag root_path, method: :post, remote: true do %>
+            <%= form_tag calculate_fare_path, method: :post, remote: true do %>
               <div class="form-group">
                 <%= text_field_tag :source, @source, class: 'form-control', placeholder: 'Source', autofocus: true %>
               </div>
