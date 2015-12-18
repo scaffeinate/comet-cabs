@@ -4,6 +4,7 @@ var source_location = null, destination_location = null;
 
 var route = function(source_place_id, destination_place_id) {
   if (source_place_id != null && destination_place_id != null) {
+    current_marker.setMap(null);
     directions_service.route({
       origin: {'placeId': source_place_id},
       destination: {'placeId': destination_place_id},

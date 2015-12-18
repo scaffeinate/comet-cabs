@@ -1,9 +1,11 @@
+var current_marker;
 var geocodeLatLng = function(map, latlng) {
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[1]) {
-        var marker = new google.maps.Marker({
+        current_marker = new google.maps.Marker({
           position: latlng,
+          animation: google.maps.Animation.DROP,
           map: map
         });
 
