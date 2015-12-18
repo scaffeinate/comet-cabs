@@ -6,4 +6,8 @@ class Driver < ActiveRecord::Base
 
   has_many :bookings
   belongs_to :cab_type
+
+  def distance
+    attributes['distance']
+  end
 end

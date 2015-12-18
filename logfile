@@ -1,0 +1,249 @@
+LOG:  database system was shut down at 2015-12-18 09:12:57 CST
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  role "sudharti" already exists
+STATEMENT:  CREATE ROLE sudharti NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN;
+FATAL:  database "sudharti" does not exist
+FATAL:  database "comet_cab_dev" does not exist
+ERROR:  role "comet_cab_dev" does not exist
+STATEMENT:  DROP ROLE comet_cab_dev;
+FATAL:  database "sudharti" does not exist
+FATAL:  database "comet_user" does not exist
+ERROR:  LIMIT #,# syntax is not supported at character 327
+HINT:  Use separate LIMIT and OFFSET clauses.
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(32.9883221) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(-96.77283109999996) )
+	      + sin ( radians(32.9883221) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) AS distance
+	    FROM Drivers
+	    HAVING distance < 30
+	    ORDER BY distance
+	    LIMIT 0 , 20
+ERROR:  column "distance" does not exist at character 287
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(32.9883221) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(-96.77283109999996) )
+	      + sin ( radians(32.9883221) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) AS distance
+	    FROM Drivers
+	    HAVING distance < 30
+	    ORDER BY distance
+	    LIMIT 20
+ERROR:  column "distance" does not exist at character 286
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(32.9883221) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(-96.77283109999996) )
+	      + sin ( radians(32.9883221) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  syntax error at or near ")" at character 48
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(?) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(?) )
+	      + sin ( radians(?) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  syntax error at or near ")" at character 48
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(?) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(?) )
+	      + sin ( radians(?) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  syntax error at or near ")" at character 48
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(?) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(?) )
+	      + sin ( radians(?) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  syntax error at or near ")" at character 48
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos ( radians(?) )
+	      * cos( radians( latitude ) )
+	      * cos( radians( longitude ) - radians(?) )
+	      + sin ( radians(?) )
+	      * sin( radians( latitude ) )
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  syntax error at or near ")" at character 47
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos (radians(?))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(?))
+	      + sin (radians(?))
+	      * sin(radians(latitude))
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  syntax error at or near ")" at character 46
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(?))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(?))
+	      + sin(radians(?))
+	      * sin(radians(latitude))
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  column "distance" does not exist at character 236
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(71))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(65))
+	      + sin(radians(72))
+	      * sin(radians(latitude))
+	      )
+	    ) as distance
+	    FROM Drivers
+	    WHERE distance IS NOT NULL
+ERROR:  column "distance" does not exist at character 252
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988334))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728535))
+	      + sin(radians(32.988334))
+	      * sin(radians(latitude))
+	      )
+	    ) AS distance FROM Drivers HAVING distance < 30
+	ORDER BY distance
+	LIMIT 20
+ERROR:  syntax error at or near "." at character 230
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988334))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728535))
+	      + sin(radians(32.988334))
+	      * sin(radians(latitude))
+	      )
+	    ) AS drivers.distance FROM Drivers HAVING drivers.distance < 30
+	ORDER BY drivers.distance
+	LIMIT 20
+ERROR:  syntax error at or near "." at character 229
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988334))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728535))
+	      + sin(radians(32.988334))
+	      * sin(radians(latitude))
+	      )
+	    ) AS driver.distance FROM Drivers HAVING driver.distance < 30
+	ORDER BY driver.distance
+	LIMIT 20
+ERROR:  syntax error at or near "." at character 229
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988334))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728535))
+	      + sin(radians(32.988334))
+	      * sin(radians(latitude))
+	      )
+	    ) AS driver.distance FROM Drivers driver HAVING driver.distance < 30
+	ORDER BY driver.distance
+	LIMIT 20
+ERROR:  syntax error at or near "." at character 229
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988334))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728535))
+	      + sin(radians(32.988334))
+	      * sin(radians(latitude))
+	      )
+	    ) AS driver.distance FROM Drivers as driver HAVING driver.distance < 30
+	ORDER BY driver.distance
+	LIMIT 20
+ERROR:  column driver.distance does not exist at character 262
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988334))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728535))
+	      + sin(radians(32.988334))
+	      * sin(radians(latitude))
+	      )
+	    ) AS distance FROM Drivers as driver HAVING driver.distance < 30
+	ORDER BY driver.distance
+	LIMIT 20
+ERROR:  column "distance" does not exist at character 280
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988346299999996))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728368))
+	      + sin(radians(32.988346299999996))
+	      * sin(radians(latitude))
+	      )
+	    ) AS distance FROM Drivers as driver HAVING distance < 30
+	ORDER BY distance
+	LIMIT 20
+ERROR:  missing FROM-clause entry for table "self" at character 280
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988346299999996))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728368))
+	      + sin(radians(32.988346299999996))
+	      * sin(radians(latitude))
+	      )
+	    ) AS distance FROM Drivers as driver HAVING self.distance < 30
+	ORDER BY self.distance
+	LIMIT 20
+ERROR:  syntax error at or near "'distance'" at character 241
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988346299999996))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728368))
+	      + sin(radians(32.988346299999996))
+	      * sin(radians(latitude))
+	      )
+	    ) AS 'distance' FROM Drivers HAVING 'distance' < 30
+	ORDER BY 'distance'
+	LIMIT 20
+ERROR:  syntax error at or near ":" at character 272
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988346299999996))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728368))
+	      + sin(radians(32.988346299999996))
+	      * sin(radians(latitude))
+	      )
+	    ) AS distance FROM Drivers ORDER BY :distance
+	LIMIT 20
+ERROR:  column drivers.distance does not exist at character 272
+STATEMENT:  SELECT id, (3959 * acos (
+	      cos(radians(32.988346299999996))
+	      * cos(radians(latitude))
+	      * cos(radians(longitude) - radians(-96.7728368))
+	      + sin(radians(32.988346299999996))
+	      * sin(radians(latitude))
+	      )
+	    ) AS distance FROM Drivers ORDER BY Drivers.distance
+	LIMIT 20
+ERROR:  insert or update on table "bookings" violates foreign key constraint "fk_rails_f7b744412f"
+DETAIL:  Key (cab_type_id)=(0) is not present in table "cab_types".
+STATEMENT:  INSERT INTO "bookings" ("source", "destination", "price", "user_id", "driver_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"

@@ -1,0 +1,8 @@
+console.log("Yes");
+
+<% if @error.nil? %>
+  alertify.success("Found a cab for you!");
+  alertify.success("<%= @driver.name %> is on the way!")
+<% else %>
+  alertify.error("<%= @error %>");
+<% end %>

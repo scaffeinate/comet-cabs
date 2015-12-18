@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151218092655) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
     t.string   "provider"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20151218092655) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "bookings", force: :cascade do |t|
     t.string   "source",      default: "0.0", null: false
@@ -37,9 +40,9 @@ ActiveRecord::Schema.define(version: 20151218092655) do
     t.integer  "cab_type_id", default: 0,     null: false
   end
 
-  add_index "bookings", ["cab_type_id"], name: "index_bookings_on_cab_type_id"
-  add_index "bookings", ["driver_id"], name: "index_bookings_on_driver_id"
-  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id"
+  add_index "bookings", ["cab_type_id"], name: "index_bookings_on_cab_type_id", using: :btree
+  add_index "bookings", ["driver_id"], name: "index_bookings_on_driver_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
   create_table "cab_types", force: :cascade do |t|
     t.decimal  "base_fare",         default: 5.0, null: false
@@ -74,9 +77,9 @@ ActiveRecord::Schema.define(version: 20151218092655) do
     t.boolean  "available",              default: true, null: false
   end
 
-  add_index "drivers", ["cab_type_id"], name: "index_drivers_on_cab_type_id"
-  add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true
-  add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
+  add_index "drivers", ["cab_type_id"], name: "index_drivers_on_cab_type_id", using: :btree
+  add_index "drivers", ["email"], name: "index_drivers_on_email", unique: true, using: :btree
+  add_index "drivers", ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true, using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "holder_name", default: "", null: false
@@ -88,7 +91,7 @@ ActiveRecord::Schema.define(version: 20151218092655) do
     t.datetime "updated_at",               null: false
   end
 
-  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "",    null: false
@@ -110,7 +113,13 @@ ActiveRecord::Schema.define(version: 20151218092655) do
     t.boolean  "is_password_set",        default: false, null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "authentications", "users"
+  add_foreign_key "bookings", "cab_types"
+  add_foreign_key "bookings", "drivers"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "drivers", "cab_types"
+  add_foreign_key "payments", "users"
 end
