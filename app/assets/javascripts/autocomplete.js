@@ -2,9 +2,11 @@ var source_place_id = null;
 var destination_place_id = null;
 var source_location = null, destination_location = null;
 
-var route = function(source_place_id, destination_place_id) {
+var route = function(source_place_id, destination_place_id, flag) {
   if (source_place_id != null && destination_place_id != null) {
-    current_marker.setMap(null);
+    if(current_marker) {
+      current_marker.setMap(null);
+    }
     directions_service.route({
       origin: {'placeId': source_place_id},
       destination: {'placeId': destination_place_id},
@@ -18,10 +20,12 @@ var route = function(source_place_id, destination_place_id) {
     });
   }
 
-  document.getElementById('source_location').value = source_location;
-  document.getElementById('destination_location').value = destination_location;
-  document.getElementById('source_place_id').value = source_place_id;
-  document.getElementById('destination_place_id').value = destination_place_id;
+  if(flag) {
+    document.getElementById('source_location').value = source_location;
+    document.getElementById('destination_location').value = destination_location;
+    document.getElementById('source_place_id').value = source_place_id;
+    document.getElementById('destination_place_id').value = destination_place_id;
+  }
 
 };
 
@@ -53,7 +57,7 @@ var initAutocomplete = function(source_element, destination_element) {
 
     source_place_id = place.place_id;
     source_location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
-    route(source_place_id, destination_place_id);
+    route(source_place_id, destination_place_id, true);
   });
 
   destination_autocomplete.addListener('place_changed', function(){
@@ -65,6 +69,6 @@ var initAutocomplete = function(source_element, destination_element) {
 
     destination_place_id = place.place_id;
     destination_location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
-    route(source_place_id, destination_place_id);
+    route(source_place_id, destination_place_id, true);
   });
 };

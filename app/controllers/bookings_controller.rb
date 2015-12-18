@@ -20,7 +20,7 @@ class BookingsController < ApplicationController
     valid_location?(source, destination, params[:cab_type])
 
     if @error.nil?
-      distance = calculate_distance(source.split(','), source.split(',')).round(2)
+      distance = calculate_distance(source.split(','), destination.split(',')).round(2)
       fare = calculate_fare_estimate(distance, cab_type).round(2)
       tax = calculate_tax(fare).round(2)
       total = (fare + tax)
@@ -52,6 +52,12 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(session[:current_booking])
     if @booking.update!(booking_params)
+      distance = calculate_distance(params[:booking][:source].split(','), params[:booking][:destination].split(',')).round(2)
+      fare = calculate_fare_estimate(distance, @booking.cab_type).round(2)
+      tax = calculate_tax(fare).round(2)
+      total = (fare + tax)
+      puts total
+      @booking.update(distance: distance, price: total)
     else
       @error = @booking.errors.full_messages.first
     end

@@ -16,18 +16,15 @@ $(document).ready(function(){
   geocoder = new google.maps.Geocoder;
 
   if(map_element != null) {
-    initMap(map_element);
+    initMap();
+  }
+
+  if(document.getElementById('current') != null) {
+    route(document.getElementById('source_place_id').value, document.getElementById('destination_place_id').value, false)
   }
 
   if(source_element != null && destination_element != null) {
     initAutocomplete(source_element, destination_element);
   }
-
-  // var source_current_element = document.getElementById('source_current');
-  // var destination_current_element = document.getElementById('destination_current');
-  //
-  // if(source_current_element != null && destination_current_element != null) {
-  //   initAutocomplete(source_current_element, destination_current_element);
-  // }
 
 });
