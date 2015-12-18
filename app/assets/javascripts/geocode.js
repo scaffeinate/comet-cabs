@@ -9,9 +9,11 @@ var geocodeLatLng = function(map, latlng) {
           map: map
         });
 
-        document.getElementById('source').value = results[1].formatted_address;
-        source_place_id = results[1].place_id;
-        source_location = latlng.lat() + ',' + latlng.lng();
+        if(document.getElementById('source')) {
+          document.getElementById('source').value = results[1].formatted_address;
+          source_place_id = results[1].place_id;
+          source_location = latlng.lat() + ',' + latlng.lng();
+        }
 
       } else {
         window.alert('No results found');

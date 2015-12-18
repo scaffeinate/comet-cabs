@@ -2,12 +2,13 @@
 // All this logic will automatically be available in application.js.
 
 var travel_mode, directions_service,
-  directions_display, geocoder;
+  directions_display, geocoder, source_element, destination_element;
 
 $(document).ready(function(){
   var map_element = document.getElementById('map');
-  var source_element = document.getElementById('source');
-  var destination_element = document.getElementById('destination');
+  var map_current_element = document.getElementById('map-current');
+  source_element = document.getElementById('source');
+  destination_element = document.getElementById('destination');
 
   travel_mode = google.maps.TravelMode.DRIVING
   directions_service = new google.maps.DirectionsService;
@@ -22,30 +23,11 @@ $(document).ready(function(){
     initAutocomplete(source_element, destination_element);
   }
 
-  $('#get_fare_estimate').click(function(e){
-    e.preventDefault();
-    if(!source_location) {
-      alertify.error('Source is invalid');
-    }
-
-    if(!destination_location) {
-      alertify.error('Destination is invalid');
-    }
-
-    if(!cab_type) {
-      alertify.error('Cab Type is invalid');
-    }
-
-    var fare_estimates_path = this.href + '.json?source=' + source_location + '&destination=' + destination_location + '&cab_type=' + $("input[type='radio'][name='cab_type']:checked").val();
-    $.get(fare_estimates_path, function(data){
-      $('#source_read_only').val(source_element.value);
-      $('#destination_read_only').val(destination_element.value);
-      $('#cab_type').text(data.cab_type + ' Cab for ' + data.distance + ' miles');
-      $('#max_persons').text(data.max_persons + ' People');
-      $('#total').text(data.total + '$');
-      $('#split_up').text(data.fare + '$' + ' + ' + data.tax + '$');
-      $('#fare-estimate-modal').modal('show');
-    });
-  });
+  // var source_current_element = document.getElementById('source_current');
+  // var destination_current_element = document.getElementById('destination_current');
+  //
+  // if(source_current_element != null && destination_current_element != null) {
+  //   initAutocomplete(source_current_element, destination_current_element);
+  // }
 
 });

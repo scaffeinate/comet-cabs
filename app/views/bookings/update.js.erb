@@ -1,0 +1,5 @@
+<% if @error.nil? %>
+  alertify.success('Trip has been updated');
+<% else %>
+  alertify.error("<%= @error %>");
+<% end %>

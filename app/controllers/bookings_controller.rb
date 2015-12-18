@@ -1,3 +1,4 @@
+
 class BookingsController < ApplicationController
   include FareEstimate
   include FindDriver
@@ -29,7 +30,11 @@ class BookingsController < ApplicationController
       if @driver.nil?
         @error = 'Sorry. No cabs around.'
       else
-        @booking = Booking.new(source: source, destination: destination, distance: distance, price: total, user: current_user, driver: @driver, status: 1, cab_type: cab_type)
+        @booking = Booking.new(source: source, destination: destination,
+                               source_name: params[:source], destination_name: params[:destination],
+                               source_place_id: params[:source_place_id], destination_place_id: params[:destination_place_id],
+                               distance: distance, price: total, user: current_user,
+                               driver: @driver, status: 1, cab_type: cab_type)
         if @booking.save
           @driver.update(available: false)
           session[:current_booking] = @booking.id
@@ -44,6 +49,18 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    @booking = Booking.find(session[:current_booking])
+    if @booking.update!(booking_params)
+    else
+      @error = @booking.errors.full_messages.first
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def confirm
     @booking = Booking.find(session[:current_booking])
     @booking.update(status: 2)
@@ -51,11 +68,17 @@ class BookingsController < ApplicationController
   end
 
   def current
+    @booking = Booking.find(session[:current_booking])
+    @driver = @booking.driver
   end
 
   private
 
   def check_active_bookings
     redirect_to current_bookings_path if session[:current_booking]
+  end
+
+  def booking_params
+    params.require(:booking).permit!
   end
 end

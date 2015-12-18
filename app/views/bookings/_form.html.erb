@@ -2,10 +2,12 @@
   <div class="form-group">
     <%= text_field_tag :source, @source, class: 'form-control', placeholder: 'Source', autofocus: true %>
     <%= hidden_field_tag :source_location, nil %>
+    <%= hidden_field_tag :source_place_id, nil %>
   </div>
   <div class="form-group">
     <%= text_field_tag :destination, nil, class: 'form-control', placeholder: 'Destination', autofocus: true %>
     <%= hidden_field_tag :destination_location, nil %>
+    <%= hidden_field_tag :destination_place_id, nil %>
   </div>
   <div class="form-group">
     <h5><b>Ride Type</b></h5>

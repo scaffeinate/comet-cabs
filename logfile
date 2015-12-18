@@ -247,3 +247,5 @@ STATEMENT:  SELECT id, (3959 * acos (
 ERROR:  insert or update on table "bookings" violates foreign key constraint "fk_rails_f7b744412f"
 DETAIL:  Key (cab_type_id)=(0) is not present in table "cab_types".
 STATEMENT:  INSERT INTO "bookings" ("source", "destination", "price", "user_id", "driver_id", "status", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"
+ERROR:  cached plan must not change result type
+STATEMENT:  SELECT  "bookings".* FROM "bookings" WHERE "bookings"."id" = $1 LIMIT 1

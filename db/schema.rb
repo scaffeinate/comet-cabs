@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218092655) do
+ActiveRecord::Schema.define(version: 20151218183707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,16 +28,20 @@ ActiveRecord::Schema.define(version: 20151218092655) do
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", using: :btree
 
   create_table "bookings", force: :cascade do |t|
-    t.string   "source",      default: "0.0", null: false
-    t.string   "destination", default: "0.0", null: false
-    t.decimal  "distance",    default: 0.0,   null: false
-    t.decimal  "price",       default: 5.0,   null: false
-    t.integer  "status",      default: 0,     null: false
+    t.string   "source",               default: "0.0", null: false
+    t.string   "destination",          default: "0.0", null: false
+    t.decimal  "distance",             default: 0.0,   null: false
+    t.decimal  "price",                default: 5.0,   null: false
+    t.integer  "status",               default: 0,     null: false
     t.integer  "user_id"
     t.integer  "driver_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "cab_type_id", default: 0,     null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "cab_type_id",          default: 0,     null: false
+    t.string   "source_name"
+    t.string   "destination_name"
+    t.string   "source_place_id"
+    t.string   "destination_place_id"
   end
 
   add_index "bookings", ["cab_type_id"], name: "index_bookings_on_cab_type_id", using: :btree

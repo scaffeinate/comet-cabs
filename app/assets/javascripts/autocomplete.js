@@ -20,6 +20,8 @@ var route = function(source_place_id, destination_place_id) {
 
   document.getElementById('source_location').value = source_location;
   document.getElementById('destination_location').value = destination_location;
+  document.getElementById('source_place_id').value = source_place_id;
+  document.getElementById('destination_place_id').value = destination_place_id;
 
 };
 
@@ -51,7 +53,7 @@ var initAutocomplete = function(source_element, destination_element) {
 
     source_place_id = place.place_id;
     source_location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
-    route(source_place_id, destination_place_id, source_location);
+    route(source_place_id, destination_place_id);
   });
 
   destination_autocomplete.addListener('place_changed', function(){
@@ -63,6 +65,6 @@ var initAutocomplete = function(source_element, destination_element) {
 
     destination_place_id = place.place_id;
     destination_location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
-    route(source_place_id, destination_place_id, destination_location);
+    route(source_place_id, destination_place_id);
   });
 };
