@@ -1,0 +1,29 @@
+<div class="modal fade" id="fare-estimate-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="text-center modal-title" id="myModalLabel">Fare Estimate</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <%= label_tag 'Source' %>
+          <%= text_field_tag :source_read_only, nil, class: 'form-control', placeholder: 'Source', readonly: true %>
+        </div>
+        <div class="form-group">
+          <%= label_tag 'Destination' %>
+          <%= text_field_tag :destination_read_only, nil, class: 'form-control', placeholder: 'Destination', readonly: true %>
+        </div>
+        <hr>
+        <h4 id="cab_type" class="text-center"></h4>
+        <h4 id="max_persons" class="text-center"></h4>
+        <hr>
+        <h2 id="total" class="text-center"></h2>
+        <h5 id="split_up" class="text-center"></h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

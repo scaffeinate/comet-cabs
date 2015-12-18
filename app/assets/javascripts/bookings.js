@@ -29,6 +29,7 @@ $(document).ready(function(){
       $('#source_read_only').val(source_element.value);
       $('#destination_read_only').val(destination_element.value);
       $('#cab_type').text(data.cab_type + ' - ' + data.distance + ' miles');
+      $('#max_persons').text(data.max_persons + ' People');
       $('#total').text(data.total + '$');
       $('#split_up').text(data.fare + '$' + ' + ' + data.tax + '$');
       $('#fare-estimate-modal').modal('show');

@@ -1,0 +1,41 @@
+.card {
+  background-color: white;
+  border: 1px solid $border-color;
+  margin-top: 25px;
+  .cover {
+    height: 75px;
+    position: relative;
+
+    .cover-pics {
+      display: none;
+    }
+
+    .avatar {
+      width: 35px;
+      position: absolute;
+      bottom: 0;
+      left: 40%;
+      margin-bottom: -30px;
+      width: 63px !important;
+    }
+  }
+
+  .about {
+    margin-top: 40px;
+    line-height: 1.85rem !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+
+    .name {
+      font-weight: 600;
+      font-size: 1.65rem;
+    }
+    .phone {
+      display: block;
+      font-size: 1.35rem;
+      color: #888;
+    }
+  }
+}

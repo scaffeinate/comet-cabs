@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :bookings do
     collection do
-      post :find_cab
+      post :confirm
     end
   end
 

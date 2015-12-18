@@ -7,6 +7,7 @@ class FareEstimateController < ApplicationController
     fare = calculate_fare_estimate(distance, cab_type).round(2)
     tax = calculate_tax(fare).round(2)
     total = (fare + tax)
-    render json: { distance: distance, fare: fare, tax: tax, total: total, cab_type: cab_type.name }.to_json
+    render json: { distance: distance, fare: fare, tax: tax, total: total,
+                   cab_type: cab_type.name, max_persons: cab_type.number_of_persons }.to_json
   end
 end
