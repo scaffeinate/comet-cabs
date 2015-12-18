@@ -24,8 +24,10 @@ $(document).ready(function(){
 
   $('#get_fare_estimate').click(function(e){
     e.preventDefault();
-    var fare_estimates_path = '/fare_estimate?source=' + source_place_id + '&destination=' + destination_place_id + '&cab_type=' + $("input[type='radio'][name='cab_type']:checked").val();
-    window.location.href = fare_estimates_path;
+    var fare_estimates_path = this.href + '.json?source=' + source_location + '&destination=' + destination_location + '&cab_type=' + $("input[type='radio'][name='cab_type']:checked").val();
+    $.get(fare_estimates_path, function(data){
+      console.log(data);
+    });
   });
 
 });
