@@ -14,10 +14,10 @@ class Users::OmniauthCallbacksController < ApplicationController
     user = User.find_for_oauth(auth)
     authentication = Authentication.from_omniauth(auth, user)
     sign_in(user)
-    if user.profile_complete?
-      redirect_to root_path
+    if user.is_password_set?
+      redirect_to set_card_info_user_path(user)
     else
-      redirect_to complete_profile_user_path(user)
+      redirect_to set_password_user_path(user)
     end
   end
 end

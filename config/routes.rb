@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :drivers
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
   devise_scope :user do
     authenticated :user do
@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get 'complete_profile', as: :complete_profile
+      get :set_password, as: :set_password
+      post :save_password, as: :save_password
+      get :set_card_info, as: :set_card_info
+      post :save_card_info, as: :save_card_info
     end
   end
 

@@ -13,10 +13,13 @@ class BookingsController < ApplicationController
     distance = calculate_distance(params[:source].split(','), params[:destination].split(',')).round(2)
     total = calculate_fare_estimate(distance, cab_type).round(2) + calculate_tax(fare).round(2)
 
-    @driver = find_driver(source, destination)
+    @driver = find_driver(source, cab_type)
     @booking = Booking.create(source: source, destination: destination, distance: distance, fare: total, user: current_user, driver: @driver, status: 1)
+    session[:current_booking] = @booking.id
   end
 
-  def confirm_pickup
+  def confirm_booking
+    @booking = Booking.find(session[:current_booking])
+    @booking.update(status: 2)
   end
 end
