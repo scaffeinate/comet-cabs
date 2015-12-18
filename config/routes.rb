@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :bookings do
     collection do
       post :confirm
+      get :current
     end
   end
 

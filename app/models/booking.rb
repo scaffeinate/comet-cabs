@@ -7,6 +7,6 @@ class Booking < ActiveRecord::Base
     pending: 0,
     started: 1,
     confirmed: 2,
-    finsihed: 3
+    completed: 3
   }
 end

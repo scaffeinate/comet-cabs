@@ -18,11 +18,11 @@ module FindDriver
       + sin(radians(?))
       * sin(radians(latitude))
       )
-    ) LIMIT 10", lat, lng, lat, lat, lng, lat]
+    ) LIMIT 1", lat, lng, lat, lat, lng, lat]
 
     records.each do |_r|
-      driver = Driver.find(_r)
-      return driver if driver.available?
+      driver = Driver.where(id: _r, available: true, cab_type_id: _cab_type.id)
+      return driver
     end
   end
 end
