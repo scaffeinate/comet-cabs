@@ -22,8 +22,8 @@
             <%= f.submit 'Sign in', class: 'btn btn-success btn-block' %>
           <% end %>
           <div class="links">
-            <%= render "devise/shared/links" %>
             <%= link_to 'Create an Account &#8594;'.html_safe, new_user_registration_path %>
+            <%= render "devise/shared/links" %>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218072102) do
+ActiveRecord::Schema.define(version: 20151218092655) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -106,7 +106,8 @@ ActiveRecord::Schema.define(version: 20151218072102) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.boolean  "profile_complete",       default: false, null: false
+    t.boolean  "is_card_info_set",       default: false, null: false
+    t.boolean  "is_password_set",        default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

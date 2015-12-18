@@ -1,0 +1,35 @@
+<div id="card">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="well">
+          <h3>Card Details</h3>
+          <hr>
+          <%= form_tag save_card_info_user_path(current_user), method: :post do %>
+            <div class="form-group">
+              <%= text_field_tag :holder_name, nil, class: 'form-control', placeholder: 'Name on Card' %>
+            </div>
+            <div class="form-group">
+              <%= text_field_tag :card_number, nil, class: 'form-control', placeholder: 'Card Number' %>
+            </div>
+            <div class="form-group">
+              <%= text_field_tag :card_cvv, nil, class: 'form-control', placeholder: 'CVV' %>
+            </div>
+            <div class="form-group">
+              <%= text_field_tag :card_expiry, nil, class: 'form-control', placeholder: 'MM/YY' %>
+            </div>
+            <div class="form-group">
+              <%= submit_tag :complete, class: 'btn btn-primary btn-block' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if flash[:error] %>
+  <div class="alert alert-dismissable alert-fixed alert-info">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <%= flash[:error] %>
+  </div>
+<% end %>
