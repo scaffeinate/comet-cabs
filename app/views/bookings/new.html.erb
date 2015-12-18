@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 left-fixed">
       <div class="content">
-        <%= form_tag bookings_path, method: :post do %>
+        <%= form_tag find_cab_bookings_path, method: :post, remote: true do %>
           <div class="form-group">
             <%= text_field_tag :source, @source, class: 'form-control', placeholder: 'Source', autofocus: true %>
             <%= hidden_field_tag :source_location, nil %>
@@ -22,7 +22,7 @@
           </div>
           <%= submit_tag 'Find Cabs', class: 'btn btn-success btn-block' %>
         <% end %>
-        <%= link_to 'Get Fare Estimate', '#', class: 'btn btn-default btn-block' %>
+        <%= link_to 'Get Fare Estimate', '#', id: :get_fare_estimate, class: 'btn btn-default btn-block' %>
       </div>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 right-relative">

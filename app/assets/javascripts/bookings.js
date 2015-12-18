@@ -21,4 +21,11 @@ $(document).ready(function(){
   if(source_element != null && destination_element != null) {
     initAutocomplete(source_element, destination_element);
   }
+
+  $('#get_fare_estimate').click(function(e){
+    e.preventDefault();
+    var fare_estimates_path = '/fare_estimate?source=' + source_place_id + '&destination=' + destination_place_id + '&cab_type=' + $("input[type='radio'][name='cab_type']:checked").val();
+    window.location.href = fare_estimates_path;
+  });
+
 });

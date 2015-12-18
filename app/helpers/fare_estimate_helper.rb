@@ -1,0 +1,2 @@
+module FareEstimateHelper
+end
