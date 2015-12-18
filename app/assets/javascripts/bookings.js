@@ -26,7 +26,12 @@ $(document).ready(function(){
     e.preventDefault();
     var fare_estimates_path = this.href + '.json?source=' + source_location + '&destination=' + destination_location + '&cab_type=' + $("input[type='radio'][name='cab_type']:checked").val();
     $.get(fare_estimates_path, function(data){
-      console.log(data);
+      $('#source_read_only').val(source_element.value);
+      $('#destination_read_only').val(destination_element.value);
+      $('#cab_type').text(data.cab_type + ' - ' + data.distance + ' miles');
+      $('#total').text(data.total + '$');
+      $('#split_up').text(data.fare + '$' + ' + ' + data.tax + '$');
+      $('#fare-estimate-modal').modal('show');
     });
   });
 

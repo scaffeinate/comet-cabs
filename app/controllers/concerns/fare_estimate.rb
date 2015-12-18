@@ -6,9 +6,8 @@ module FareEstimate
   end
 
   def calculate_fare_estimate(_distance, _cab_type)
-    cab_type = CabType.find(_cab_type)
-    base_fare = cab_type.base_fare
-    per_mile_fare = cab_type.per_mile_fare
+    base_fare = _cab_type.base_fare
+    per_mile_fare = _cab_type.per_mile_fare
 
     base_fare + (_distance * per_mile_fare)
   end
