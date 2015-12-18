@@ -1,93 +1,99 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-var map, travel_mode, directionsService, directionsDisplay;
-var origin_place_id = null;
+var map, travel_mode, directions_service, directions_display;
+var map_element, source_element, destination_element;
+var source_place_id = null;
 var destination_place_id = null;
+var source_location, destination_location;
 
-$(document).ready(function(){
+var route = function(source_place_id, destination_place_id) {
+  if (source_place_id != null && destination_place_id != null) {
+    directions_service.route({
+      origin: {'placeId': source_place_id},
+      destination: {'placeId': destination_place_id},
+      travelMode: travel_mode
+    }, function(response, status) {
+      if (status === google.maps.DirectionsStatus.OK) {
+        directions_display.setDirections(response);
+      } else {
+        console.log('Directions request failed due to ' + status);
+      }
+    });
+  }
+
+  document.getElementById('source_location').value = source_location;
+  document.getElementById('destination_location').value = destination_location;
+
+};
+
+var initMap = function() {
   travel_mode = google.maps.TravelMode.DRIVING
-  directionsService = new google.maps.DirectionsService;
-  directionsDisplay = new google.maps.DirectionsRenderer;
-  initMap();
-  initAutocomplete();
-});
+  directions_service = new google.maps.DirectionsService;
+  directions_display = new google.maps.DirectionsRenderer;
 
-function expandViewportToFitPlace(map, place) {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -33.8688, lng: 151.2195},
+    zoom: 13
+  });
+  directions_display.setMap(map);
+};
+
+var expandViewportToFitPlace = function(map, place) {
   if (place.geometry.viewport) {
     map.fitBounds(place.geometry.viewport);
   } else {
     map.setCenter(place.geometry.location);
     map.setZoom(17);
   }
-}
+};
 
-function initMap() {
-  var mapId = document.getElementById('map');
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13
-  });
-  directionsDisplay.setMap(map);
-}
-
-function initAutocomplete() {
-  origin_autocomplete = new google.maps.places.Autocomplete(
-    (document.getElementById('source')), {
-      types: ['geocode']
+var initAutocomplete = function() {
+  source_autocomplete = new google.maps.places.Autocomplete((source_element), {
+    types: ['geocode']
   });
 
-  destination_autocomplete = new google.maps.places.Autocomplete(
-    (document.getElementById('destination')), {
-      types: ['geocode']
+  destination_autocomplete = new google.maps.places.Autocomplete((destination_element), {
+    types: ['geocode']
   });
 
-  origin_autocomplete.addListener('place_changed', function() {
-    var place = origin_autocomplete.getPlace();
+  source_autocomplete.addListener('place_changed', function(){
+    var place = this.getPlace();
     if (!place.geometry) {
-      window.alert("Autocomplete's returned place contains no geometry");
+      console.log('Source place has no geometry');
       return;
     }
     expandViewportToFitPlace(map, place);
 
-    // If the place has a geometry, store its place ID and route if we have
-    // the other place ID
-    origin_place_id = place.place_id;
-    route(origin_place_id, destination_place_id, travel_mode,
-          directionsService, directionsDisplay);
+    source_place_id = place.place_id;
+    source_location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
+    route(source_place_id, destination_place_id, source_location);
   });
 
-  destination_autocomplete.addListener('place_changed', function() {
-    var place = destination_autocomplete.getPlace();
-    if (!place.geometry) {
-      window.alert("Autocomplete's returned place contains no geometry");
+  destination_autocomplete.addListener('place_changed', function(){
+    var place = this.getPlace();
+    if(!place.geometry) {
+      console.log('Destination place has no geometry');
       return;
     }
-    expandViewportToFitPlace(map, place);
 
-    // If the place has a geometry, store its place ID and route if we have
-    // the other place ID
     destination_place_id = place.place_id;
-    route(origin_place_id, destination_place_id, travel_mode,
-          directionsService, directionsDisplay);
+    destination_location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
+    route(source_place_id, destination_place_id, destination_location);
   });
 
-  function route(origin_place_id, destination_place_id, travel_mode,
-                 directionsService, directionsDisplay) {
-    if (!origin_place_id || !destination_place_id) {
-      return;
-    }
-    directionsService.route({
-      origin: {'placeId': origin_place_id},
-      destination: {'placeId': destination_place_id},
-      travelMode: travel_mode
-    }, function(response, status) {
-      if (status === google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(response);
-      } else {
-        window.alert('Directions request failed due to ' + status);
-      }
-    });
+};
+
+$(document).ready(function(){
+  map_element = document.getElementById('map');
+  source_element = document.getElementById('source');
+  destination_element = document.getElementById('destination');
+
+  if(map_element != null) {
+    initMap();
   }
 
-}
+  if(source_element != null && destination_element != null) {
+    initAutocomplete();
+  }
+});
